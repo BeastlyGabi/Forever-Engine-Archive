@@ -4,9 +4,9 @@
 name: Linux Build
 on:
   push:
-    branches: [legacy hybrid rewrite]
+    branches: [legacy, hybrid, rewrite]
   pull_request:
-    branches: [legacy hybrid rewrite]
+    branches: [legacy, hybrid, rewrite]
 jobs:
   build:
     name: Linux Build
