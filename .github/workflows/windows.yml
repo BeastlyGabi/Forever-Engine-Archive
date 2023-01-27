@@ -1,0 +1,60 @@
+# nabbed from https://github.com/YoshiCrafter29/CodenameEngine
+# by YoshiCrafter29
+
+name: Windows Build
+on:
+  push:
+jobs:
+  build:
+    name: Windows Build
+    runs-on: windows-latest
+    steps:
+
+    - name: Pulling the new commit
+      uses: actions/checkout@v2
+
+    - name: Setting up Haxe
+      uses: krdlab/setup-haxe@v1
+      with:
+        haxe-version: 4.2.5
+
+    - name: Restore existing build cache for faster compilation
+      uses: actions/cache@v3
+      with:
+        # not caching the bin folder to prevent asset duplication and stuff like that
+        key: cache-build-windows
+        path: |
+          .haxelib/
+          export/release/windows/haxe/
+          export/release/windows/obj/
+        restore-keys: |
+          cache-build-windows
+
+    - name: Installing/Updating libraries
+      run: |
+        haxelib setup C:/haxelib
+        haxelib install hxcpp
+        haxelib install lime
+        haxelib install openfl
+        haxelib install flixel
+        haxelib install flixel-addons
+        haxelib install flixel-ui
+        haxelib install hscript
+        haxelib install flixel-tools
+        haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+        haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons
+
+    - name: Building the game
+      run: haxelib run lime build windows
+
+    - name: Uploading artifact (entire build)
+      uses: actions/upload-artifact@v2
+      with:
+        name: Forever-Engine
+        path: export/release/windows/bin
+
+    - name: Uploading artifact (executable)
+      uses: actions/upload-artifact@v2
+      with:
+        name: Update-Windows
+        path: export/release/windows/bin/Forever-Engine.exe

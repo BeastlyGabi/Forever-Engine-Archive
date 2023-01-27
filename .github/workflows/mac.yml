@@ -1,0 +1,60 @@
+# nabbed from https://github.com/YoshiCrafter29/CodenameEngine
+# by YoshiCrafter29
+
+name: MacOS Build
+on:
+  push:
+jobs:
+  build:
+    name: MacOS Build
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Pulling the new commit
+      uses: actions/checkout@v2
+
+    - name: Setting up Haxe
+      uses: krdlab/setup-haxe@v1
+      with:
+        haxe-version: 4.2.5
+
+    - name: Restore existing build cache for faster compilation
+      uses: actions/cache@v3
+      with:
+        # not caching the bin folder to prevent asset duplication and stuff like that
+        key: cache-build-mac
+        path: |
+          .haxelib/
+          export/release/mac/haxe/
+          export/release/mac/obj/
+        restore-keys: |
+          cache-build-mac
+
+    - name: Installing/Updating libraries
+      run: |
+        haxelib setup ~/haxelib
+        haxelib install hxcpp
+        haxelib install lime
+        haxelib install openfl
+        haxelib install flixel
+        haxelib install flixel-addons
+        haxelib install flixel-ui
+        haxelib install hscript
+        haxelib install flixel-tools
+        haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc
+        haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons
+
+    - name: Building the game
+      run: haxelib run lime build mac
+
+    - name: Uploading artifact (entire build)
+      uses: actions/upload-artifact@v2
+      with:
+        name: Forever-Engine
+        path: export/release/mac/bin
+
+    - name: Uploading artifact (executable)
+      uses: actions/upload-artifact@v2
+      with:
+        name: Update-MacOS
+        path: export/release/mac/bin/Forever-Engine
