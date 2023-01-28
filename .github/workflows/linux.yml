@@ -4,11 +4,15 @@
 name: Linux Build
 on:
   push:
-    branches-ignore:
-    - "master"
+    branches:
+    - legacy
+    - hybrid
+    - rewrite
   pull_request:
-    branches-ignore:
-    - "master"
+    branches:
+    - legacy
+    - hybrid
+    - rewrite
 jobs:
   build:
     name: Linux Build
