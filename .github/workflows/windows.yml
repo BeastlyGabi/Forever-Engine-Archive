@@ -13,6 +13,8 @@ on:
     - legacy
     - hybrid
     - rewrite
+
+  workflow_dispatch:
 jobs:
   build:
     name: Windows Build
