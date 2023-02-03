@@ -1,0 +1,10 @@
+name: Ask a question
+description: Ask a question about the engine
+labels: [enhancement]
+body:
+- type: textarea
+  id: question-field
+  attributes:
+    label: "Ask here your desired question."
+  validations:
+    required: false

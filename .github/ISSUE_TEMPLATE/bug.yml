@@ -1,0 +1,38 @@
+name: Bug report
+description: Report bug(s) from the engine - bugs with modifications will be completely disregarded and closed immediately
+labels: [bug]
+body:
+- type: textarea
+  id: description
+  attributes:
+    label: "Describe the bug"
+    description: A clear and concise description of what the bug is.
+  validations:
+    required: true
+
+- type: dropdown
+  id: build-modifications
+  attributes:
+    label: "Have you modified the engine in any way prior to reporting this bug?"
+    multiple: false
+    options:
+    - "Yes"
+    - "No"
+  validations:
+    required: true
+
+- type: textarea
+  id: what-you-modified
+  attributes:
+    label: "If you have selected 'Yes' in the previous field, describe what you modified within your build of the engine"
+    description: If you have selected "No", you can leave this field blank.
+  validations:
+    required: false
+
+- type: textarea
+  id: terminal-output
+  attributes:
+    label: "Provide the log that the terminal outputs"
+    description: Terminal could be either Command Prompt, Powershell, etc.
+  validations:
+    required: false
