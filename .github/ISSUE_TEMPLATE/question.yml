@@ -1,6 +1,6 @@
 name: Ask a question
 description: Ask a question about the engine
-labels: [enhancement]
+labels: [question]
 body:
 - type: textarea
   id: question-field
