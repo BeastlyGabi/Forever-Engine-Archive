@@ -4,9 +4,7 @@
 </p>
 
 -----------------------------------------------------
-Due to recent events, [Yoshubs / CubicYoshi](https://github.com/Yoshubs)'s github account has been deleted
-
-in order to preserve her hard work on this project, [I, Gabriela](https://github.com/BeastlyGabi) have archived the files for all versions of Forever Engine I had saved on separate repositories.
+Repository created as an archive to the Funkin': Forever Engine, made by [Yoshubs / CubicYoshi](https://github.com/Yoshubs).
 
 * [Legacy](https://github.com/BeastlyGabi/Funkin-Forever-Engine/tree/legacy)
 * [1.0 (UNFINISHED)](https://github.com/BeastlyGabi/Funkin-Forever-Engine/tree/rewrite)
